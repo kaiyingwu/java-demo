@@ -11,6 +11,6 @@ public class StudentAndTeacherDo {
     private int studentId;
     private String studentName;
     private String teacherName;
-    private int studentState;
+    private int state;
 
 }

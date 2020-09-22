@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.bean.BaseResponse;
+import com.example.demo.enums.ErrorMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,7 +35,7 @@ public class GlobalExceptionHandler {
             }
             message = errors.get(0);
         }
-        return new BaseResponse(message, 10002);
+        return new BaseResponse(ErrorMsg.STUDENT_NAME_EMPTY.getMsg()+":"+message, ErrorMsg.STUDENT_NAME_EMPTY.getCode());
     }
 
 }

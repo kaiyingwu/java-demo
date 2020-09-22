@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Mapper
-public interface MySqlMapper {
+public interface MySqlMapper{
 
     /**
      * 添加一行学生数据
@@ -71,6 +72,9 @@ public interface MySqlMapper {
      * 根据条件查找学生数据
      */
     @Select("select * from student where id = #{id}")
+    @Results(value = {@Result(column = "id",property = "id"),
+    @Result(column = "student_name",property = "studentName"),
+    @Result(column = "student_password",property = "studentPassword")})
     List<StudentDo> selectStudentById(int studentId);
 
 

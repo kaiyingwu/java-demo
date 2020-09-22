@@ -1,5 +1,6 @@
 package com.example.demo.bean;
 
+import com.example.demo.enums.ErrorMsg;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -40,6 +41,11 @@ public class BaseResponse<T> {
         this.message = msg;
     }
 
+    public BaseResponse(int code,String msg){
+        this.code = code;
+        this.message = msg;
+    }
+
     public BaseResponse(String requestId, int code, String message, T data) {
         this.requestId = requestId;
         this.code = code;
@@ -59,6 +65,14 @@ public class BaseResponse<T> {
         BaseResponse response = new BaseResponse<>();
         response.code = code;
         response.message = message;
+        response.requestId = UUID.randomUUID().toString();
+        return response;
+    }
+
+    public static BaseResponse createError(ErrorMsg errorMsg) {
+        BaseResponse response = new BaseResponse<>();
+        response.code = errorMsg.getCode();
+        response.message = errorMsg.getMsg();
         response.requestId = UUID.randomUUID().toString();
         return response;
     }
